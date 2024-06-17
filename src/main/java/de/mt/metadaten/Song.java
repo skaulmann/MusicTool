@@ -2,9 +2,9 @@ package de.mt.metadaten;
 
 public class Song {
 
-    private String NUMBER = "";
-    private String NAME = "";
-    private String DURATION = "";
+    private String NUMBER ;
+    private String NAME ;
+    private String DURATION;
 
 
     public Song(String number, String name, String duration) {
@@ -51,4 +51,5 @@ public class Song {
                 ", NAME='" + NAME + '\'' +
                 '}';
     }
+
 }

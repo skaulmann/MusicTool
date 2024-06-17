@@ -1,6 +1,7 @@
 package de.mt.metadaten;
 
 import de.mt.restApi.DiscogsRequest;
+import de.mt.restApi.MusicDatabaseQuerry;
 
 public class MusicMetadatenHandler {
 

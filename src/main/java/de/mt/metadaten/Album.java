@@ -1,51 +1,123 @@
 package de.mt.metadaten;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.mt.metadaten.annotations.AlbumMember;
+
+import java.util.*;
 
 public class Album {
 
 
-    private String ARTIST = "";
-    private String ALBUM = "";
-    private String YEAR = "";
-    private List<Song> SONGS = new ArrayList<>();
+    private String Artist;
+    private String Album;
+    private String Year;
 
+    private String Country;
+    private String Genres;
+    private String Label;
 
-    private String Land = "";
-    private String Genres = "";
-    private String Label = "";
+    private List<Song> Songs = new ArrayList<>();
 
 
     public Album(String artist, String album, String year) {
-        this.ARTIST = artist;
-        this.ALBUM = album;
-        this.YEAR = year;
+        this.Artist = artist;
+        this.Album = album;
+        this.Year = year;
     }
 
+
+
     public String getArtist() {
-        return ARTIST;
+        return Artist;
+    }
+
+    @AlbumMember(field="artist")
+    public void setArtist(String artist) {
+        Artist = artist;
     }
 
     public String getAlbum() {
-        return ALBUM;
+        return Album;
+    }
+
+    @AlbumMember(field="album")
+    public void setAlbum(String album) {
+        Album = album;
     }
 
     public String getYear() {
-        return YEAR;
+        return Year;
+    }
+
+    @AlbumMember(field="year")
+    public void setYear(String year) {
+        Year = year;
+    }
+
+    public String getCountry() {
+        return Country;
+    }
+
+    @AlbumMember(field="country")
+    public void setCountry(String country) {
+        Country = country;
+    }
+
+    public String getGenres() {
+        return Genres;
+    }
+
+    @AlbumMember(field="genre")
+    public void setGenres(String genres) {
+        Genres = genres;
+    }
+
+    public String getLabel() {
+        return Label;
+    }
+
+    @AlbumMember(field="label")
+    public void setLabel(String label) {
+        Label = label;
     }
 
     public List<Song> getSongs() {
-        return SONGS;
+        return Songs;
     }
+
+    public void addSong(Song song) {
+        Songs.add(song);
+        sortSongs();
+    }
+
+
 
     @Override
     public String toString() {
         return "Album{" +
-                "ARTIST='" + ARTIST + '\'' +
-                ", ALBUM='" + ALBUM + '\'' +
-                ", YEAR='" + YEAR + '\'' +
-                ", SONGS=" + SONGS +
+                "ARTIST='" + Artist + '\'' +
+                ", ALBUM='" + Album + '\'' +
+                ", YEAR='" + Year + '\'' +
+                ", SONGS=" + Songs +
                 '}';
     }
+
+    private void sortSongs() {
+        Collections.sort(Songs, (song1, song2) -> {
+            int song1Number, song2Number;
+            try{
+                song1Number = Integer.parseInt(song1.getNUMBER());
+            }catch (NumberFormatException ex){
+                System.err.println(song1.getNUMBER() + "Is not a number");
+                song1Number = 0;
+            }
+            try{
+                song2Number = Integer.parseInt(song2.getNUMBER());
+            }catch (NumberFormatException ex) {
+                System.out.println(song2.getNUMBER() + "is not a number");
+                song2Number = 0;
+            }
+            return song1Number - song2Number;
+        });
+    }
+
 }
