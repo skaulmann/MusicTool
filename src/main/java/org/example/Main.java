@@ -15,11 +15,15 @@ public class Main {
 
     public void start (String ... args ){
 
-
+        System.out.println(args[0] + " " + args[1]);
         new HWPrinter().print("Hallo2");
 
-        // new DiscogsRequest().testCall("Störungsmelder", "Zeichen der Freiheit", "");
-        new MusicMetadatenHandler("Störungsmelder", "Zeichen der Freiheit", "").test();
+
+        String interpred = args[0];
+        String album = args[1];
+        String year = args[2];
+        // new DiscogsRequest().testCall(interpred, album, year);
+        new MusicMetadatenHandler(args[0], args[1],  args[2]).test();
     }
 
 
